@@ -1,4 +1,4 @@
 //Cliente
 
-const socket = io()
-socket.emit("message","Comunicacion desde Websocket")
+const socket = io(); // instancia al socket y lo guarda en la variable
+socket.emit("message", "Comunicacion desde Websocket");
