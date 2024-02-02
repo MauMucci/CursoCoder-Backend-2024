@@ -7,6 +7,7 @@ import path from 'path'
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io';
 import {viewsRouter} from './routes/views.router.js'
+import { ProductManager } from './Managers/ProductManager.js';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -33,11 +34,35 @@ app.set("view engine", "handlebars") // establece handlebars como el motor de vi
 //Connexion con socket.io
 const socketServer = new Server(httpServer);
 
-socketServer.on('connection', socket => {
-    console.log("Nueva conexion");
+//instanciamos ProductManager
+const pm = new ProductManager("./files/products.json")
 
-    socket.on('messageFromClient', data => {
-        console.log("Mensaje recibido desde el cliente",data);
-    });
+socketServer.on('connection', socket => {
+
+    console.log("Nuevo cliente conectado");
+
+    socket.on('saludo', data => {
+        console.log("Hola desde servidor!")
+    })
+
+    // const emitRealTimeProductList = async () => {
+    //     const products = await pm.getProductsAsync();
+    //     socket.emit('realTimeProductUpdate', products);
+    // };
+
+    // emitRealTimeProductList();
+
+    // socket.on('addProducts',async data => {
+    //     await pm.addProductsAsync(data)
+    //     emitRealTimeProductList()
+    // })
+
+
+    // socket.on('deleteProducts',async data => {
+    //     await pm.deleteProduct(data.id)
+    //     emitRealTimeProductList()
+    // })
+
+
 });
 

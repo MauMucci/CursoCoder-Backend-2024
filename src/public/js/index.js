@@ -1,8 +1,6 @@
 //Cliente
+const socket = io();// instancia al socket y lo guarda en la variable
 
-const socket = io(); // instancia al socket y lo guarda en la variable
-socket.emit("messageFromClient", "Enviado desde cliente");
-
-socket.on("messageFromServer",data => {
-    console.log('mensaje del servidor', data)
+socket.emit('saludo',data => {
+    console.log('hola desde cliente', data)
 })

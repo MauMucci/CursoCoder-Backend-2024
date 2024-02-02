@@ -1,0 +1,45 @@
+<!-- src/views/realTimeProducts.handlebars -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos en Tiempo Real</title>
+</head>
+<body>
+    <h1>Lista de Productos en Tiempo Real</h1>
+    <ul id="realTimeProductsList"></ul>
+
+<!-- Formulario para agregar o editar un producto -->
+<form id="productForm">
+
+    <h2>Prueba</h2>
+    
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" value="Apple" required>
+
+    <label for="description">Descripción:</label>
+    <textarea id="description" name="description" required>iPhone SE Plus</textarea>
+
+    <label for="price">Precio:</label>
+    <input type="text" id="price" name="price" value="Edición especial con potente chip, cámara avanzada y soporte para 5G." required>
+
+    <label for="thumbnail">Thumbnail:</label>
+    <input type="text" id="thumbnail" name="thumbnail" value="ARS 29,999" required>
+
+    <label for="code">Código:</label>
+    <input type="text" id="code" name="code" value="APSEPLUS-ARG" required>
+
+    <label for="stock">Stock:</label>
+    <input type="number" id="stock" name="stock" value="100" required>
+
+    <label for="status">Estado:</label>
+    <input type="checkbox" id="status" name="status" checked>
+
+    <button type="submit">Guardar Producto</button>
+</form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/realTimeProducts.js"></script>
+</body>
+</html>

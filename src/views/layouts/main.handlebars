@@ -1,4 +1,4 @@
-
+<!-- src/views/index.handlebars -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,52 +7,47 @@
     <title>Listado de Productos</title>
 </head>
 <body>
+    <h1>Listado de Productos MAIN</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Código</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.stock}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 
-  <h1>hola {{name}} {{last_name}} como estas?</h1>
+    <body>
+    {{!-- <h1>Lista de Productos en Tiempo Real</h1>
+    <ul id="realTimeProductsList"></ul>
+
+    <!-- Formulario para creación y eliminación de productos -->
+    <form id="productForm">
+        <label for="productName">Nombre del Producto:</label>
+        <input type="text" id="productName" name="productName" required>
+
+        <button type="submit">Agregar Producto</button>
+        <button type="button" onclick="deleteProduct()">Eliminar Producto</button>
+    </form> --}}
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/index.js"></script>
+    {{!-- <script src="/src/public/js/index.js"></script> --}}
 
 
-    <h1>Listado de Productos</h1>
-    <ul>
-        {{#each products}}
-            <li>
-                <h3>{{this.title}}</h3>
-                <p>{{this.description}}</p>
-                <p>Precio: {{this.price}}</p>
-                <p>Código: {{this.code}}</p>
-                <p>Stock: {{this.stock}}</p>
-            </li>
-        {{/each}}
-    </ul>
 </body>
 </html>
-
-
-
-
-
-<script src="/socket.io/socket.io.js"></script>
-<script>
-
-    const socket = io()
-  
-    
-    /*function enviarMensaje() {
-        const mensaje = document.getElementById("mensaje").value
-        socket.emit("mensaje", mensaje)
-
-        const boton = document.getElementById("btn-send")
-        boton.addEventListener("click", () => {
-            console.log("click")
-        }
-        )
-
-        //Escuchar eventos
-        socket.on("mensaje", (data) => {
-            console.log(`Mensaje recibido: ${data}`)
-        })
-    }
-
-*/
-
-
-</script>
