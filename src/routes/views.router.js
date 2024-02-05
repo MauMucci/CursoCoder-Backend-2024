@@ -19,7 +19,9 @@ const pm = new ProductManager("./files/products.json")
 
 viewsRouter.get('/',async (req,res) => {
     const products = await pm.getProductsAsync()
-    console.log(products);
+    //console.log(products);
+
+
     res.render('index',{products})
     console.log("adentro2")
 })

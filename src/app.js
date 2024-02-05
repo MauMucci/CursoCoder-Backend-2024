@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 const app = express() //la variable app contiene todas las funcionalidades de express
-const PORT = 8080;
+const PORT = 7070;
 const httpServer = app.listen(PORT,()=>console.log(`Servidor escuchando desde puerto ${PORT}`))
 
 //Middlewares
@@ -36,8 +36,12 @@ const socketServer = new Server(httpServer);
 socketServer.on('connection', socket => {
     console.log("Nueva conexion");
 
-    socket.on('messageFromClient', data => {
+    socket.on('saludo', data => {
         console.log("Mensaje recibido desde el cliente",data);
     });
+
+    socket.on('message',d => {
+        console.log(d)
+    })
 });
 
