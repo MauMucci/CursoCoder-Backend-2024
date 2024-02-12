@@ -8,6 +8,7 @@ import handlebars from 'express-handlebars'
 import { Server } from 'socket.io';
 import {viewsRouter} from './routes/views.router.js'
 import { ProductManager } from './Managers/ProductManager.js';
+import { ProductManager } from './Managers/ProductManager.js';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -34,6 +35,7 @@ app.set("view engine", "handlebars") // establece handlebars como el motor de vi
 //Connexion con socket.io
 const socketServer = new Server(httpServer);
 
+//instanciamos ProductManager
 const pm = new ProductManager("./files/products.json")
 
 //
