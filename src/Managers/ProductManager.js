@@ -3,8 +3,6 @@ import fs from 'fs'
 
 import { Product } from '../Models/Product.js';
 
-//
-
 //let idIncrementado = 0;
 
 export class ProductManager {
@@ -32,8 +30,6 @@ export class ProductManager {
         try {
             const fileContent = await fs.promises.readFile(this.filePath, 'utf-8');
             this.products = JSON.parse(fileContent);
-            
-            //console.log("Productos cargados correctamente en el archivo desde loadProductsFromFile");
             return fileContent;
             
         }catch (error) {
@@ -42,7 +38,9 @@ export class ProductManager {
     }
 
     async addProductsAsync(product) {
-        
+        try {
+            await this.loadProductsFromFile()
+
         if (!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock) {
             console.log("datos incompletos")
             return null
@@ -51,8 +49,7 @@ export class ProductManager {
         if (this.checkCode(product)) {
             console.log(`Código [${product.code}] ya usado`);
         }
-        else {
-            
+        else {            
             if(this.products.length === 0){//Si no hay productos en el arreglo => le asignamos el id 1
                 product.id = 1;            
                 console.log("Primer producto agregado correctamente " + product.title + " id: "+ product.id)  
@@ -66,13 +63,15 @@ export class ProductManager {
             this.products.push(product) 
             await this.saveProductsOnFile(); 
         }
-        
-    }
+            
+        } catch (error) {
 
-     async getProductsAsync() {
+            console.error("Error al agregar producto:", error);
+        throw error;
+        }}
+
+    async getProductsAsync() {
       await this.loadProductsFromFile();
-    //   console.log("++++ Productos ++++")
-    //   console.log(this.products) 
       return this.products    
     }       
 
@@ -86,7 +85,7 @@ export class ProductManager {
            // console.log(`Producto encontrado con el id: ${id} desde getProductsByIdAsync`)
             return product
         }
-}
+    }
 
 async updateProduct(id, updatedFields) {
     try {
@@ -144,26 +143,26 @@ let pm = new ProductManager("./files/products.json")
 
 const prod1 = new Product(
     "Apple",
-    "iPhone SE Plus",
-    "Edición especial con potente chip, cámara avanzada y soporte para 5G.",
+    "iphone SE Plus",    
     "ARS 29,999",
+    "/example",
     "APSEPLUS-ARG",
     100
   );
 const prod2 = new Product(
     "LG",
-    "LG Vortex Pro",
-    "Teléfono con diseño elegante, sistema de audio premium y funciones de grabación avanzadas.",
+    "Vortex Pro",
     "ARS 19,999",
+    "/example",
     "LGVPRO-ARG",
     120
   );
 
 const prod3 = new Product(
     "Motorola",
-    "MotoG Fusion",
-    "Smartphone con pantalla infinita, cámara versátil y batería de larga duración.",
+    "Fusion" ,
     "ARS 17,499",
+    "/example",
     "MGFUSION-ARG",
     180
   );
@@ -171,7 +170,7 @@ const prod3 = new Product(
 const prod4 = new Product(
     "Samsung",
     "Galaxy A90 Neo",
-    "Smartphone con pantalla Super AMOLED, triple cámara y carga rápida.",
+    "/example",
     "ARS 21,799",
     "SGA90NEO-ARG",
     150
@@ -180,7 +179,7 @@ const prod4 = new Product(
 const prod5 = new Product(
     "TCL",
     "TCL 10L Lite",
-    "Smartphone asequible con pantalla HD, rendimiento eficiente y diseño moderno.",
+    "/example",
     "ARS 10,499",
     "TCL10LLITE-ARG",
     220
@@ -189,14 +188,14 @@ const prod5 = new Product(
 const prod6 = new Product(
     "Xiaomi",
     "Redmi Note X",
-    "Teléfono con procesador Snapdragon, cámara cuádruple y batería de alta capacidad.",
+    "/example",
     "ARS 14,999",
     "XMREDMINX-ARG",
     200
   );
 
 
-// pm.addProductsAsync(prod1)
+ //pm.addProductsAsync(prod2)
 //pm.addProductsAsync(prod2)
  //pm.addProductsAsync(prod3)
 //pm.addProductsAsync(prod4)

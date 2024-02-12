@@ -7,6 +7,7 @@ import path from 'path'
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io';
 import {viewsRouter} from './routes/views.router.js'
+import { ProductManager } from './Managers/ProductManager.js';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -18,7 +19,7 @@ const httpServer = app.listen(PORT,()=>console.log(`Servidor escuchando desde pu
 //Middlewares
 app.use(express.json()) //El servidor podra recibir jsons en la request
 app.use(express.urlencoded({extended:true}))//permite que se pueda enviar informacion desde la url. 
-app.use(express.static(__dirname + "/views")) //seteamos de manera statica la carpeta /views
+app.use(express.static(__dirname + "/public")) //seteamos de manera statica la carpeta /public
 
 //Routes
 app.use('/api/products',productsRouter)
@@ -33,15 +34,21 @@ app.set("view engine", "handlebars") // establece handlebars como el motor de vi
 //Connexion con socket.io
 const socketServer = new Server(httpServer);
 
-socketServer.on('connection', socket => {
-    console.log("Nueva conexion");
+const pm = new ProductManager("./files/products.json")
 
-    socket.on('saludo', data => {
-        console.log("Mensaje recibido desde el cliente",data);
+//
+socketServer.on("connection", (socket) => {
+    console.log("Nuevo cliente conectado");
+
+    socket.on("message", (data) => {
+        console.log("Mensaje recibido:", data);
     });
 
-    socket.on('message',d => {
-        console.log(d)
-    })
+    //Evento para agregar productos
+    socket.on("addProduct", async product => {  
+        await pm.addProductsAsync(product);
+        const products = await pm.getProductsAsync(); 
+        socketServer.emit('updateProducts', products);
+    });
+    
 });
-

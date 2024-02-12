@@ -1,56 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Productos</title>
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/home.js"></script> 
+
+
 </head>
 <body>
-
-  <h1>hola {{name}} {{last_name}} como estas?</h1>
-
-
-    <h1>Listado de Productos</h1>
-    <ul>
-        {{#each products}}
-            <li>
-                <h3>{{this.title}}</h3>
-                <p>{{this.description}}</p>
-                <p>Precio: {{this.price}}</p>
-                <p>Código: {{this.code}}</p>
-                <p>Stock: {{this.stock}}</p>
-            </li>
-        {{/each}}
-    </ul>
+    
+{{{body}}}
+ 
 </body>
 </html>
 
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="/src/public/js/index.js">
-
-    const socket = io()
-  
-  
-    
-    /*function enviarMensaje() {
-        const mensaje = document.getElementById("mensaje").value
-        socket.emit("mensaje", mensaje)
-
-        const boton = document.getElementById("btn-send")
-        boton.addEventListener("click", () => {
-            console.log("click")
-        }
-        )
-
-        //Escuchar eventos
-        socket.on("mensaje", (data) => {
-            console.log(`Mensaje recibido: ${data}`)
-        })
-    }
-
-*/
-
-
-</script>
