@@ -3,12 +3,11 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import {productsRouter} from './routes/products.router.js';
 import {cartsRouter} from './routes/carts.router.js'
-import path from 'path'
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io';
 import {viewsRouter} from './routes/views.router.js'
 import { ProductManager } from './Managers/ProductManager.js';
-import { ProductManager } from './Managers/ProductManager.js';
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -52,5 +51,12 @@ socketServer.on("connection", (socket) => {
         const products = await pm.getProductsAsync(); 
         socketServer.emit('updateProducts', products);
     });
+
+    socket.on('deleteProduct',async productId => {
+        await pm.deleteProduct(productId)
+        const products = await pm.getProductsAsync()
+        socketServer.emit('updateProducts',products)
+    }
+    )
     
 });

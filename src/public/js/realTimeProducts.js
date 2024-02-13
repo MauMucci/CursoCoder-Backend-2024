@@ -1,14 +1,9 @@
-
-// socket.emit("message", 'Hola desde realTimeProducts.js');
-
 const socket = io(); // instancia al socket y lo guarda en la variable
 
-const realTimeProductsList = document.getElementById('realTimeProductsList');
-const productForm = document.getElementById('productForm');
-
+const addProductForm = document.getElementById('addProductForm');
 
 // Manejo el envío del formulario 
-productForm.addEventListener('submit', async (event) => {
+addProductForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     //Obtengo los datos del formulario
@@ -41,6 +36,15 @@ productForm.addEventListener('submit', async (event) => {
     document.getElementById('stock').value = '';
 
     
+});
+
+
+const deleteProductForm = document.getElementById('deleteProductForm');
+
+deleteProductForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Evita que el formulario se envíe normalmente
+    const productId = document.getElementById('productId').value; // Obtiene el ID del producto a eliminar del campo de entrada
+    socket.emit('deleteProduct', productId); // Envía el ID del producto al servidor para eliminarlo
 });
 
 
