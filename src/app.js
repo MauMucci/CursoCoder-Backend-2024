@@ -11,7 +11,8 @@ import { ProductManager } from './DAO/FileSystem/Manager/ProductManager.js';
 import productsRouterMongoose from './routes/products.router.mongoose.js';
 import cartRouterMongoose from './routes/carts.router.mongoose.js';
 import chatRouter from './routes/chat.router.mongoose.js';
-import { chatModel } from './DAO/Mongo/Models/Chat.model.js';
+import chatModel from './DAO/Mongo/Models/Chat.model.js';
+import ChatManagerMongoose from './DAO/Mongo/Managers/chatManager.mongoose.js';
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -58,7 +59,8 @@ app.use("/api/carts",cartRouterMongoose)
 app.use("/",chatRouter)
 
 //instanciamos ProductManager
-const pm = new ProductManager("./files/products.json")
+const productManager = new ProductManager("./files/products.json")
+const chatManagerMongoose = new ChatManagerMongoose()
 
 //
 socketServer.on("connection", (socket) => {
@@ -66,30 +68,29 @@ socketServer.on("connection", (socket) => {
     
     //Evento para agregar productos
     socket.on("addProduct", async product => {  
-        await pm.addProductsAsync(product);
-        const products = await pm.getProductsAsync(); 
+        await productManager.addProductsAsync(product);
+        const products = await productManager.getProductsAsync(); 
         socketServer.emit('updateProducts', products);
     });
 
     //Evento para borrar productos
     socket.on('deleteProduct',async productId => {
-        await pm.deleteProduct(productId)
-        const products = await pm.getProductsAsync()
+        await productManager.deleteProduct(productId)
+        const products = await productManager.getProductsAsync()
         socketServer.emit('updateProducts',products)
     })
 
     //Conexion con Mongo
-    socket.on ('message',async (data) => {
-        try{
-            //guarda los mensaje en la bdd
-            await chatModel.create({email: data.email, message: data.message})
-            const messages = await chatModel.find()
-            socketServer.emit('messageLogs',messages)
+    socket.on("newUserConnection", async (username) => {
+        socket.broadcast.emit("newUserConnection", username)
+        let oldMessages = await chatManagerMongoose.getMessages()
+        socket.emit("allMessages", oldMessages)
+    }) 
+    socket.on("message", async (message) => {
+        await chatManagerMongoose.addMessages(message)
+        let messages = await chatManagerMongoose.getMessages()
+        socketServer.emit("allMessages", messages)
 
-        }
-        catch(error){
-            console.log('Error guardando en la base de datos')
-        }
     })
 });
 

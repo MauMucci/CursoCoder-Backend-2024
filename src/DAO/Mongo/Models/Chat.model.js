@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 const chatCollection = "chat"
 
 const chatSchema = new mongoose.Schema({
-    email:{type: String, required:true},
-    message: { type: String, required: true},
-    postTime:{ type: Date, default: Date.now}
+    username: {type: String, index: true},
+    message : {type: String, index: true }
 })
 
-export const chatModel = mongoose.model(chatCollection,chatSchema) 
+const chatModel = mongoose.model(chatCollection , chatSchema)
+
+export default chatModel
