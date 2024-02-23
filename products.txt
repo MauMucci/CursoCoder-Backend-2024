@@ -2,49 +2,55 @@
   {
     "title": "Apple",
     "description": "iPhone SE Plus",
-    "price": "ARS 29,999",
+    "price": 29999,
     "thumbnail": "https://example.com/huawei_p40pro.jpg",
     "code": "APSEPLUS-ARG",
-    "stock": 100
+    "stock": 100,
+    "status":true
   },
   {
     "title": "LG",
     "description": "LG Vortex Pro",
-    "price": "ARS 19,999",
+    "price": 19999,
     "thumbnail": "https://example.com/huawei_p40pro.jpg",
     "code": "LGVPRO-ARG",
-    "stock": 120
+    "stock": 120,
+    "status":true
   },
   {
     "title": "Motorola",
     "description": "MotoG Fusion",
-    "price": "ARS 17,499",
+    "price": 17499,
     "thumbnail": "https://example.com/huawei_p40pro.jpg",
     "code": "MGFUSION-ARG",
-    "stock": 180
+    "stock": 180,
+    "status":true
   },
   {
     "title": "Samsung",
     "description": "Galaxy A90 Neo",
-    "price": "ARS 21,799",
-    "thumbnail": "https://example.com/huawei_p40pro.jpg",
+    "price": 21799,
+    "thumbnail": "https://example.com/example.jpg",
     "code": "SGA90NEO-ARG",
-    "stock": 150
+    "stock": 150,
+    "status":true
   },
   {
     "title": "TCL",
     "description": "TCL 10L Lite",
-    "price": "ARS 10,499",
-    "thumbnail": "https://example.com/huawei_p40pro.jpg",
+    "price": 10499,
+    "thumbnail": "https://example.com/example.jpg",
     "code": "TCL10LLITE-ARG",
-    "stock": 220
+    "stock": 220,
+    "status":true
   },
-  {
+ {
     "title": "Xiaomi",
     "description": "Redmi Note X",
-    "price": "ARS 14,999",
-    "thumbnail": "https://example.com/huawei_p40pro.jpg",
+    "price": 14499,
+    "thumbnail": "https://example.com/example.jpg",
     "code": "XMREDMINX-ARG",
-    "stock": 200
-  }
+    "stock": 200,
+    "status":true
+}
 ]

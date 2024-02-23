@@ -1,9 +1,7 @@
 import fs from 'fs'
  //FUNCIONA ELIMINANDO TYPE: MODULE DEL PACAKAGE.JSON
-
 import { Product } from '../Models/Product.js';
 
-//let idIncrementado = 0;
 
 export class ProductManager {
 

@@ -27,5 +27,14 @@
     "code": "3",
     "stock": "3",
     "id": 5
+  },
+  {
+    "title": "Motorola",
+    "description": "MotoG Fusion",
+    "price": "17499",
+    "thumbnail": "https://example.com/example.jpg",
+    "code": "SGA90NEO-ARG",
+    "stock": "150",
+    "id": 6
   }
 ]

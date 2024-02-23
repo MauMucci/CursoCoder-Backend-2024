@@ -1,0 +1,10 @@
+import { Router } from "express";
+
+const chatRouter = Router()
+
+chatRouter.get('/chat',(req,res) => {
+    res.render('chat')
+})
+
+
+export default chatRouter

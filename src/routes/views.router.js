@@ -1,8 +1,8 @@
 import express from 'express'
-import { ProductManager } from '../Managers/ProductManager.js'
+import { CartManager } from '../DAO/FileSystem/Manager/CartManager.js';
+import { ProductManager } from '../DAO/FileSystem/Manager/ProductManager.js';
 
 const viewsRouter = express.Router()
-
 
 
 viewsRouter.get('/',async (req,res) => {
