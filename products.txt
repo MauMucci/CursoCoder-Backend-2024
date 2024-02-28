@@ -6,7 +6,8 @@
     "thumbnail": "https://example.com/huawei_p40pro.jpg",
     "code": "APSEPLUS-ARG",
     "stock": 100,
-    "status":true
+    "status":true,
+    "category":"cellphone"
   },
   {
     "title": "LG",
@@ -15,7 +16,8 @@
     "thumbnail": "https://example.com/huawei_p40pro.jpg",
     "code": "LGVPRO-ARG",
     "stock": 120,
-    "status":true
+    "status":true,
+    "category":"cellphone"
   },
   {
     "title": "Motorola",
@@ -24,7 +26,8 @@
     "thumbnail": "https://example.com/huawei_p40pro.jpg",
     "code": "MGFUSION-ARG",
     "stock": 180,
-    "status":true
+    "status":true,
+    "category":"cellphone"
   },
   {
     "title": "Samsung",
@@ -33,7 +36,8 @@
     "thumbnail": "https://example.com/example.jpg",
     "code": "SGA90NEO-ARG",
     "stock": 150,
-    "status":true
+    "status":true,
+    "category":"cellphone"
   },
   {
     "title": "TCL",
@@ -42,7 +46,8 @@
     "thumbnail": "https://example.com/example.jpg",
     "code": "TCL10LLITE-ARG",
     "stock": 220,
-    "status":true
+    "status":true,
+    "category":"cellphone"
   },
  {
     "title": "Xiaomi",
@@ -51,6 +56,82 @@
     "thumbnail": "https://example.com/example.jpg",
     "code": "XMREDMINX-ARG",
     "stock": 200,
-    "status":true
+    "status":true,
+    "category":"cellphone"
 }
+
+//------------------------------
+[
+    {
+        "title": "Dell XPS 13",
+        "description": "Ultrabook de alto rendimiento",
+        "thumbnail": "https://example.com/dell-xps-13.jpg",
+        "code": "DELL-XPS13-2022",
+        "stock": 50,
+        "price": 1599.99,
+        "status": true,
+        "category":"notebook"
+    },
+    {
+        "title": "MacBook Pro 16",
+        "description": "Potente portátil para profesionales",
+        "thumbnail": "https://example.com/macbook-pro-16.jpg",
+        "code": "MBP16-2022",
+        "stock": 30,
+        "price": 2399.99,
+        "status": true,
+        "category":"notebook"
+    },
+    {
+        "title": "Lenovo ThinkPad X1 Carbon",
+        "description": "Portátil empresarial ultraligero",
+        "thumbnail": "https://example.com/thinkpad-x1-carbon.jpg",
+        "code": "THINKPAD-X1C-2022",
+        "stock": 40,
+        "price": 1699.99,
+        "status": true,
+        "category":"notebook"
+    },
+    {
+        "title": "HP Spectre x360",
+        "description": "Convertible premium con diseño elegante",
+        "thumbnail": "https://example.com/hp-spectre-x360.jpg",
+        "code": "HP-SPECTRE-X360-2022",
+        "stock": 25,
+        "price": 1899.99,
+        "status": true,
+        "category":"notebook"
+    },
+    {
+        "title": "Asus ROG Zephyrus G14",
+        "description": "Portátil gaming compacto y potente",
+        "thumbnail": "https://example.com/asus-rog-zephyrus-g14.jpg",
+        "code": "ROG-ZEPHYRUS-G14-2022",
+        "stock": 20,
+        "price": 1799.99,
+        "status": true,
+        "category":"notebook"
+    },
+    {
+        "title": "Acer Swift 5",
+        "description": "Ultrabook ligero con pantalla táctil",
+        "thumbnail": "https://example.com/acer-swift-5.jpg",
+        "code": "ACER-SWIFT5-2022",
+        "stock": 35,
+        "price": 1299.99,
+        "status": true,
+        "category":"notebook"
+    },
+    {
+        "title": "Microsoft Surface Laptop 4",
+        "description": "Portátil elegante y versátil",
+        "thumbnail": "https://example.com/surface-laptop-4.jpg",
+        "code": "SURFACE-LAPTOP4-2022",
+        "stock": 45,
+        "price": 1499.99,
+        "status": true,
+        "category":"notebook"
+    }
+]
+
 ]

@@ -18,6 +18,7 @@ import ChatManagerMongoose from './DAO/Mongo/Managers/chatManager.mongoose.js';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
+//Configuracion de server
 const app = express() //la variable app contiene todas las funcionalidades de express
 const PORT = 7070;
 const httpServer = app.listen(PORT,()=>console.log(`Servidor escuchando desde puerto ${PORT}`))
@@ -28,9 +29,9 @@ app.use(express.urlencoded({extended:true}))//permite que se pueda enviar inform
 app.use(express.static(__dirname + "/public")) //seteamos de manera statica la carpeta /public
 
 //Routes con FileSystem
- app.use('/api/products',productsRouter)
- app.use('/api/carts',cartsRouter)
- app.use('/',viewsRouter)
+//  app.use('/api/products',productsRouter)
+//  app.use('/api/carts',cartsRouter)
+//  app.use('/',viewsRouter)
 
 //configuracion Handlebars
 app.engine("handlebars", handlebars.engine()) //le dice a Express de usar Handlebars como motor de plantillas
@@ -54,9 +55,9 @@ mongoose.connect(mongoUrl)
 
 
 //Routes con Mongoose
-app.use("/api/products",productsRouterMongoose)
-app.use("/api/carts",cartRouterMongoose)
-app.use("/",chatRouter)
+app.use("/",productsRouterMongoose)
+app.use("/",cartRouterMongoose)
+app.use("/",viewsRouter)
 
 //instanciamos ProductManager
 const productManager = new ProductManager("./files/products.json")

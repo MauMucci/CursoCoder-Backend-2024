@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{product.title}}</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Descripción:</h5>
+                <p class="card-text">{{product.description}}</p>
+                <h5 class="card-title">Precio:</h5>
+                <p class="card-text">${{product.price}}</p>
+                <h5 class="card-title">Categoría:</h5>
+                <p class="card-text">{{product.category}}</p>
+                <!-- Agrega aquí cualquier otro detalle del producto que desees mostrar -->
+                <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
