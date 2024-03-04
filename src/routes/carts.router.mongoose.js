@@ -7,7 +7,7 @@ const cartManagerMongoose = new CartManagerMongoose()
 
 //GET
 cartRouterMongoose.get('/api/carts', async(req,res) => {
-    let cart = await cartManagerMongoose.getCartAsync().populate(products.product)
+    let cart = await cartManagerMongoose.getCartAsync().populate(products.product).lean()
     res.send({cart:"success",payload:cart})
 })
 

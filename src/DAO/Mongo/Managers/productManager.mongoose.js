@@ -55,6 +55,7 @@ export class ProductManagerMongoose{
         const prevLink = hasPrevPage ? `?limit=${parsedLimit}&page=${prevPage}&sort=${sort}&query=${query}` : null;
         const nextLink = hasNextPage ? `?limit=${parsedLimit}&page=${nextPage}&sort=${sort}&query=${query}` : null;
 
+
         return {
             status: 'success',
             payload: filteredProducts,

@@ -10,10 +10,11 @@ const productSchema = new mongoose.Schema({
     stock: { type: Number, required: true }, 
     price: { type: Number, required: true }, 
     status: { type: Boolean, default: true }, 
+    category: {type:String, required: true}
 });
 
-
 productSchema.plugin(mongoosePaginate)
+
 const ProductModel = mongoose.model(productCollection,productSchema)
 
 export default ProductModel
