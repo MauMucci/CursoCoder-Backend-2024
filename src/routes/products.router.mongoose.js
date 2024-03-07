@@ -1,5 +1,7 @@
 import { Router } from "express"
 import { ProductManagerMongoose } from "../DAO/Mongo/Managers/productManager.mongoose.js";
+import { requireAuth } from "../DAO/Mongo/Managers/authManager.js";
+
 
 const productsRouterMongoose = Router()
 const productManagerMongoose = new ProductManagerMongoose()
@@ -60,7 +62,7 @@ productsRouterMongoose.delete('/api/products/:pid',async(req,res)=> {
 
 
 // Ruta de lista paginada de todos los productos disponibles
-productsRouterMongoose.get('/products', async (req, res) => {
+productsRouterMongoose.get('/products',requireAuth, async (req, res) => {
     try {
         const { limit, page, sort, query } = req.query;
         const productManagerMongoose = new ProductManagerMongoose();
