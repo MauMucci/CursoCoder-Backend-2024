@@ -1,8 +1,6 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import {productsRouter} from './routes/FileSystem/products.router.js';
-import {cartsRouter} from './routes/FileSystem/carts.router.js'
+import { dirname} from 'path';
 import handlebars from 'express-handlebars'
 import { Server } from 'socket.io';
 import {viewsRouter} from './routes/views.router.js'
@@ -14,12 +12,14 @@ import ChatManagerMongoose from './DAO/Mongo/Managers/chatManager.mongoose.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import sessionRouter from './routes/session.router.js';
+import bcrype from 'bcrypt'
+
 
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-//instanciamos ProductManager y CharManager
+//instanciamos ProductManager y ChatManager
 const productManager = new ProductManager("./files/products.json")
 const chatManagerMongoose = new ChatManagerMongoose()
 

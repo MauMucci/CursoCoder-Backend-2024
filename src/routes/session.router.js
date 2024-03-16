@@ -15,7 +15,7 @@ sessionRouter.post('/api/session/register',async (req,res) => {
         const newUser = await userManager.createUserAsync({name,lastName,email,age,password} )
 
         // res.send({ result: "success", payload: newUser });
-        res.redirect('/home')
+        res.redirect('/login')
 
     } catch (error) {
         console.error("Error:", error);
@@ -27,14 +27,13 @@ sessionRouter.post('/login',async(req,res) => {
         let {email,password} = req.body
         const user = await login(email,password) //importo la funcion 'login'
 
-    req.session.user = user
+        req.session.user = user
 
-    console.log('inicio de sesion correcto');
-    console.log(`usuario: ${user}`);
-    console.log(`usuario: ${user.name}`);
+        console.log('inicio de sesion correcto');
+        console.log(`usuario: ${user.name}`);
 
-    //Guardo la informacion del usuario dentro de la sesion del servidor
-    res.render('home',{user: user.toObject()}); //Con el ToObject puedo hacer que muestre el nombre en hbls
+        //Guardo la informacion del usuario dentro de la sesion del servidor
+        res.render('home',{user: user}); 
 
     } catch (error) {
         console.error('Error al iniciar sesión:', error);

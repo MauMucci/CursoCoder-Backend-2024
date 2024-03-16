@@ -1,5 +1,7 @@
 import { UserModel } from "../Models/User.model.js"
+import bcrypt from 'bcrypt'
 
+//**En este archivo uso funciones independientes  */
 
 export const requireAuth = (req,res,next) => {
     if(!req.session.user) {
@@ -22,24 +24,36 @@ export const redirectToHomeIfAuthenticated = (req,res,next) => {
 
 export const login = async (email, password) => {
 
-    let isAdmin = false
     let user 
 
     if (email === "adminCoder@coder.com" && password === "adminCod3r123") {
 
-        isAdmin = true
         user = {
             name: "Coder",
-            lastName: "House",
-            email: "adminCoder@coder.com",
+            lastname:"House",
+            email:"adminCoder@coder.com",
             role:"admin",
-            admin: isAdmin,
+            admin:true
         }
     }
-    else {
-        user = await UserModel.findOne({email,password})
-    }
 
-    return user
+    else {
+
+        user = await UserModel.findOne({email})
+
+        if(!user){
+            throw new Error("Usuario no encontrado");
+        }
+
+        //comparo la pass con la de la bdd
+        const passwordMatch = await bcrypt.compare(password,user.password)
+
+        if(!passwordMatch){
+            throw new Error("Contraseña incorrecta")
+        }
+        
+    }
+    console.log(user)
+        return user
 }
 

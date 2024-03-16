@@ -6,13 +6,31 @@
     <title>Home</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .user-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa; /* Color de fondo */
+            color: #212529; /* Color del texto */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">¡Bienvenido!</h4>
             <p>Has ingresado a la plataforma, {{user.name}}.</p>
-            {{#if user.admin}}Soy Admin.{{else}}Soy Usuario.{{/if}}</p>
+            <div class="user-status">
+                {{#if user.admin}}
+                    <span class="admin-status">Soy Admin</span>
+                {{else}}
+                    <span class="user-status">Soy Usuario</span>
+                {{/if}}
+            </div>
             <hr>
             <p class="mb-0">¡Explora nuestro catálogo o gestiona tus productos!</p>
         </div>
@@ -24,7 +42,10 @@
                 <a href="/productsList" class="btn btn-secondary btn-lg btn-block">Ver Lista de Productos</a>
             </div>
             <div class="col-md-6 mt-4">
-                <a href="/logout" class="btn btn-danger btn-lg btn-block">Cerrar Sesión</a>
+                <a href="/profile" class="btn btn-success btn-lg btn-block">Perfil</a>
+            </div>
+            <div class="col-md-6 mt-4 text-right">
+                <a href="/logout" class="btn btn-danger btn-sm">Cerrar Sesión</a>
             </div>
         </div>
     </div>

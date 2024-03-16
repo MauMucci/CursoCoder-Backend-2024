@@ -1,0 +1,8 @@
+App ID: 855324
+Client ID: Iv1.59f12be42bad5723
+
+github app name: BackendCoder2024
+
+client sectret: fc464fb1bdfcb31a3f752b306696b059c77ce630
+
+Callback URL http://localhost:7070/api/session/githubcallback
