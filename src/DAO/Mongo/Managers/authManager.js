@@ -1,6 +1,5 @@
 import { UserModel } from "../Models/User.model.js"
-import bcrypt from 'bcrypt'
-
+import { isValidPassword } from "../../../utils.js"
 //**En este archivo uso funciones independientes  */
 
 export const requireAuth = (req,res,next) => {
@@ -44,16 +43,16 @@ export const login = async (email, password) => {
         if(!user){
             throw new Error("Usuario no encontrado");
         }
-
-        //comparo la pass con la de la bdd
-        const passwordMatch = await bcrypt.compare(password,user.password)
+       
+        const passwordMatch = isValidPassword(user,password)
 
         if(!passwordMatch){
             throw new Error("Contraseña incorrecta")
         }
         
     }
+
     console.log(user)
-        return user
+    return user
 }
 

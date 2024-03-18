@@ -1,7 +1,6 @@
 import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname} from 'path';
 import handlebars from 'express-handlebars'
+import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import {viewsRouter} from './routes/views.router.js'
 import mongoose from 'mongoose';
@@ -12,12 +11,9 @@ import ChatManagerMongoose from './DAO/Mongo/Managers/chatManager.mongoose.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import sessionRouter from './routes/session.router.js';
-import bcrype from 'bcrypt'
+import passport from 'passport';
+import initializePassport from './DAO/config/passport.config.js';
 
-
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
 //instanciamos ProductManager y ChatManager
 const productManager = new ProductManager("./files/products.json")
@@ -44,6 +40,10 @@ app.use(session({
     resave:false,
     saveUninitialized:true,
 }))
+
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Routes con FileSystem
 //  app.use('/api/products',productsRouter)

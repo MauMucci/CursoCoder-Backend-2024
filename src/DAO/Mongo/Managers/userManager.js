@@ -1,12 +1,12 @@
 import {UserModel} from "../Models/User.model.js";
-import bcrypt from 'bcrypt'
+import { createHash } from "../../../utils.js";
 
 export default class UserManager {
 
     createUserAsync = async ({name,lastName,email,age,password}) => {
         try {
 
-            const hashedPassword = await bcrypt.hash(password,10)
+            const hashedPassword = createHash(password,10)
 
             const newUser = await UserModel.create({
                 name,
@@ -15,6 +15,7 @@ export default class UserManager {
                 age,
                 password:hashedPassword
             })
+
             console.log(newUser)
             
             return newUser

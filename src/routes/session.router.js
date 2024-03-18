@@ -1,6 +1,7 @@
 import { Router } from "express"
 import UserManager  from "../DAO/Mongo/Managers/userManager.js";
 import { redirectToHomeIfAuthenticated,login } from "../DAO/Mongo/Managers/authManager.js";
+import passport from "passport";
 
 const sessionRouter = Router()
 const userManager = new UserManager()
@@ -9,18 +10,36 @@ sessionRouter.get('/api/session/register',redirectToHomeIfAuthenticated,async(re
     res.render('register')
 })
 
-sessionRouter.post('/api/session/register',async (req,res) => {
-    try {
-        let {name,lastName,email,age,password} = req.body
-        const newUser = await userManager.createUserAsync({name,lastName,email,age,password} )
+/*REGISTER TRADICIONAL
 
-        // res.send({ result: "success", payload: newUser });
-        res.redirect('/login')
+// sessionRouter.post('/api/session/register',async (req,res) => {
+//     try {
+//         let {name,lastName,email,age,password} = req.body
+//         const newUser = await userManager.createUserAsync({name,lastName,email,age,password} )
 
-    } catch (error) {
-        console.error("Error:", error);
-    }
+//         // res.send({ result: "success", payload: newUser });
+//         res.redirect('/login')
+
+//     } catch (error) {
+//         console.error("Error:", error);
+//     }
+// })
+
+
+
+/*REGISTER CON ESTRATEGIA LOCAL*/
+
+sessionRouter.post('/api/session/register',passport.authenticate('register',({failureRedirect:'/failuregister'})) ,async (req,res) => {
+
+    console.log(("registro fallido"))
+    res.redirect('/login')
 })
+
+sessionRouter.get('/failRegister',async(req,res) => {
+    console.log(("registro fallido"))
+    res.send({error:"failed"})
+})
+//Fin de estrategia
 
 sessionRouter.post('/login',async(req,res) => {
     try {
