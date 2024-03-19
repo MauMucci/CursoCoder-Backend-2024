@@ -4,7 +4,6 @@ import { redirectToHomeIfAuthenticated,login } from "../DAO/Mongo/Managers/authM
 import passport from "passport";
 
 const sessionRouter = Router()
-const userManager = new UserManager()
 
 sessionRouter.get('/api/session/register',redirectToHomeIfAuthenticated,async(req,res) => {
     res.render('register')
@@ -28,7 +27,6 @@ sessionRouter.get('/api/session/register',redirectToHomeIfAuthenticated,async(re
 
 
 /*REGISTER CON ESTRATEGIA LOCAL*/
-
 sessionRouter.post('/api/session/register',passport.authenticate('register',({failureRedirect:'/failuregister'})) ,async (req,res) => {
 
     console.log(("registro fallido"))
@@ -41,6 +39,8 @@ sessionRouter.get('/failRegister',async(req,res) => {
 })
 //Fin de estrategia
 
+
+/*LOGIN TRADICIONAL */
 sessionRouter.post('/login',async(req,res) => {
     try {
         let {email,password} = req.body
@@ -58,6 +58,17 @@ sessionRouter.post('/login',async(req,res) => {
         console.error('Error al iniciar sesión:', error);
         res.status(500).send('Error interno del servidor.');
     }
+})
+
+/*LOGIN CON ESTRATEGIA GITHUB */
+sessionRouter.get('/api/session/github',passport.authenticate('github',{scope:["user:email"]}),async(req,res) => {})
+
+
+sessionRouter.get('/api/session/githubcallback',passport.authenticate('github',{failureRedirect:'/login',failureMessage: true}),async(req,res)=> {
+    //La estrategia solo devolvera un usuario, lo agregamos al objeto de la sesion
+    req.session.user = req.user
+    console.log(req.user)
+    res.redirect('/') //VER ACA
 })
 
 sessionRouter.get('/logout',(req,res) => {
