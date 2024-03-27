@@ -10,7 +10,7 @@ viewsRouter.get('/login', async (req, res) => {
 });
 
 // Ruta para la página de inicio
-viewsRouter.get('/', requireAuth, async (req, res) => {
+viewsRouter.get('/home', requireAuth, async (req, res) => {
     try {
         // Verificar si el usuario está autenticado
         if (!req.session.user) {

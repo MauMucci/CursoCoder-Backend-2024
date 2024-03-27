@@ -49,7 +49,6 @@ export const login = async (email, password) => {
         if(!passwordMatch){
             throw new Error("Contraseña incorrecta")
         }
-        
     }
 
     console.log(user)
